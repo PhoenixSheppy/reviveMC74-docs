@@ -3,11 +3,7 @@
 repack the ramdisk directory back into a ramdisk and pack with kernel
 @author: ribo
 '''
-import sys, os, time, subprocess, shutil, traceback
-# In reviveMC74.py, packBoot.py is called from with the installFiles directory
-# ribou.py is the cwd (parent of installFiles, add cwd to path
-sys.path.append(os.getcwd())
-
+import sys, os, time, subprocess, shutil
 from ribou import *
 from datetime import datetime
 
@@ -26,9 +22,10 @@ def unpack(biFn):
   print("cwd "+os.getcwd())
 
   resp, rc = execute("unpackbootimg -i ../"+biFn)
-  print("unpackbootimg "+biFn+": (rc="+str(rc)+") resp:\n"+prefix("  |", resp))
-  print("ls "+os.getcwd()+":\n"+prefix("--|", '\n'.join(listDir(os.getcwd(),
-    False))))
+  print("unpackbootimg "+biFn+": "+str(rc)+"\n"+resp)
+  
+  resp, rc = execute("ls -l")
+  print("ls "+os.getcwd()+": "+str(rc)+"\n"+resp)
 
   resp, rc = execute("gunzip "+biFn+"-ramdisk.gz")
   print("gunzip "+biFn+"-ramdisk.gz: "+str(rc)+"\n"+resp)
@@ -89,6 +86,8 @@ def pack(biFn):
 
 
   # Compress ramdisk
+  #resp, rc = execute("ls -l")
+  #print("pre-gzip "+os.getcwd()+": "+str(rc)+"\n"+resp)
   try:
     os.remove(biFn+"-ramdisk.gz")
   except: pass
@@ -101,27 +100,24 @@ def pack(biFn):
   base = readFile(biFn+"-base")[:-1]
   pagesize = readFile(biFn+"-pagesize")[:-1]
   ts = datetime.now().strftime("%y%m%d%H%M")
-  cmd = ["mkbootimg", "--kernel", biFn+"-zImage",
-    "--ramdisk", biFn+"-ramdisk.gz", "--cmdline", cmdline,
-    "--base", "0x"+base, "--pagesize", pagesize, "--output", "../"+biFn+ts ]
-  # Note: --cmdline contains spaces, we must pass the command as tokens so
-  # execute() won't .split(' ') the command to prepare the args array
-  print("cmd: '"+str(cmd)+"'")
-  resp, rc = execute(cmd)
-  print("(rc="+str(rc)+") resp:\n"+prefix("  |", resp))
+  cmd = "mkbootimg --kernel "+biFn+"-zImage --ramdisk "+biFn+"-ramdisk.gz" \
+    +" --cmdline '"+cmdline+"' --base "+base+" --pagesize "+pagesize \
+    +" --output ../"+biFn+ts
+  print("cmd: '"+cmd+"'")
+  #resp, rc = execute("ls -l")
+  #print("pre-mkbootimg "+os.getcwd()+": "+str(rc)+"\n"+resp)
+  resp, rc = execute(cmd, True)
 
   os.chdir("..")
   writeFile(fn+"LsRdNew", lsRdNew)
 
 
-def listDir(dir, recursive=True, search=''):
-  # Replacement for 'find . -print' on Windows
+def listDir(dir):  # Replacement for 'find . -print' on Windows
   lst = []
   for fn in os.listdir(dir):
     subdir = dir+'/'+fn
-    if search in subdir: 
-      lst.append(subdir)
-    if recursive and os.path.isdir(subdir):
+    lst.append(subdir)
+    if os.path.isdir(subdir):
       lst.extend(listDir(subdir))
   return lst
 
@@ -139,18 +135,17 @@ if __name__ == '__main__':
       args = []
       argList = sys.argv[2:]  # Remove the program name and pack/unpack mode token
       for arg in argList:
-        if '=' in arg:
-          args.remove(arg)
-          arg = arg.split('=')  # Handle name=val arguments
-          locals()[arg[0]] = arg[1]  # Add name to locals
-        else:
-          args.append(arg)
+	if '=' in arg:
+	  args.remove(arg)
+	  arg = arg.split('=')  # Handle name=val arguments
+	  locals()[arg[0]] = arg[1]  # Add name to locals
+	else:
+	  args.append(arg)
 
       biFn = args[0] if len(args)>0 else "boot.img"
       if op == 'pack':
-        pack(biFn)
+	pack(biFn)
       else:
-        unpack(biFn)
+	unpack(biFn)
   except Exception as ex:
-    # (Do not use hndExcept, it reads from stdin, and would hang reviveMC74.py)
-    print("packBoot exception: "+traceback.format_exc())
+    hndExcept()

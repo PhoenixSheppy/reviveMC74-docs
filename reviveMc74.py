@@ -19,45 +19,27 @@ from ribou import *
 
 logFid = "reviveMC74.log"
 installFilesDir = "installFiles"
-filesPresentFid = "filesPresent.flag"
-  # If this file exists, we checked that needed files are here
+filesPresentFid = "filesPresent.flag"  # If this file exists, we checked that needed files are here
 
 neededProgs = bunch(  # These are commands that demonstrate that needed programs are in the
   # PATH and that they execute (ie not just the filename of the program
   adb = ["adb version", "adbNeeded"],   
   fastboot = ["fastboot", "adbNeeded"],
   unpackbootimg = ["unpackbootimg", "unpNeeded"],
-  mkbootimg = ["mkbootimg", "unpNeeded"],
-  chmod = ["chmod", "upnNeeded"], 
-  cpio = ["cpio", "upnNeeded"], 
-  gzip = ["gzip -V", "gzipNeeded"], 
-  gunzip = ["gunzip -V", "gzipNeeded"], 
+  mkbootimg = ["mkbootimg", "unpNeeded"]
 )
 
 neededFiles = bunch(
   recoveryClockImg = "recovery-clockwork-touch-6.0.4.7-mc74v2.img",
-  packBootPy = "packBoot.py"
-)
-
-installFiles = bunch(
-  lights = ["lights", "/system/bin", "chmod 755"],
-  hex = ["hex", "/system/bin", "chmod 755"]
+  packBootPy = "packBoot.py",
 )
 
 installApps = bunch(
+  audTest = "audTest.apk",
   launcher = "com.teslacoilsw.launcher-4.1.0-41000-minAPI16.apk",
   ssm = "revive.SSMService-debug.apk",
   reviveMC74 = "revive.MC74-debug.apk"
 )
-
-updateFiles = '''
-copy /y \andrStud\SSMservice\app\build\outputs\apk\debug\revive.SSMService-debug.apk \git\reviveMC74\installFiles
-copy /y \git\MC74\app\build\outputs\apk\debug\revive.MC74-debug.apk \git\reviveMC74\installFiles
-
-copy /y \andrStud\hex\app\.cxx\cmake\debug\armeabi-v7a\hex \git\reviveMC74\installFiles
-copy /y \andrStud\hex\app\.cxx\cmake\debug\armeabi-v7a\lights \git\reviveMC74\installFiles
-copy /y \andrStud\hex\app\.cxx\cmake\debug\armeabi-v7a\sendevent \git\reviveMC74\installFiles
-''' 
 
 
 options = bunch(
@@ -148,16 +130,6 @@ def reviveMain(args):
           +" the 'path'"
         )
         
-      if "gzipNeeded" in state.needed:
-        print("\nGZIP/GUNZIP programs needed.  To for windows, see:\n"
-          +"  http://gnuwin32.sourceforge.net/packages/gzip.htm\n"
-          +"  http://gnuwin32.sourceforge.net/downlinks/gzip-bin-zip.php\n\n"
-          +"Afer you download the gzip-1.3.12-1-bin.zip file, open it and copy" 
-          +" gzip.exe into your 'path'.\n"
-          +"Also, copy 'gunzip.bat' from the 'installFiles' directory into a"
-          +" directory that is in your 'path'" 
-        )
-        
       return
 
   # Execute the target objective's 'func', it will call it's prerequisites
@@ -211,7 +183,7 @@ def findLine(data, searchStr):
       return line
 
 
-def executeLog(cmd, showErr=True):
+def executeLog(cmd, showErr=False):
   '''Execute an operating system command and log the command and response'''
   print("  Executing: '"+cmd+"'")
   ret = execute(cmd, showErr)
@@ -235,18 +207,6 @@ def prefix(prefix, msg):
   if len(msg)==0:  return msg
   msg = msg[:-1] if msg[-1]=='\n' else msg
   return prefix+('\n'+prefix).join(msg.split('\n'))
-
-
-def listDir(dir, recursive=True, search=''):
-  # Replacement for 'find . -print' on Windows
-  lst = []
-  for fn in os.listdir(dir):
-    subdir = dir+'/'+fn
-    if search in subdir: 
-      lst.append(subdir)
-    if recursive and os.path.isdir(subdir):
-      lst.extend(listDir(subdir))
-  return lst
 
 
 # FUNCTIONS FOR CARRYING OUT OBJECTIVES ----------------------------------------
@@ -275,7 +235,7 @@ def replaceRecoveryFunc():
 
   # Has the recovery partition already been replaced?
   isReplaced = False
-  resp, rc = executeLog("adb shell grep secure default.prop")
+  resp, rc = executeLog("adb shell grep secure default.prop", False)
   
   if findLine(resp, "ro.secure=0"):
     # This phone already has had the recovery replaced (ie shell cmd worked)
@@ -330,7 +290,7 @@ def backupPartFunc():
 
   logp("\n--backupPart "+partName+" partition: "+partFid)
   resp, rc = executeLog("adb shell dd if="+partFid+" of=/cache/"+imgFn+".img ibs=4096")
-  resp, rc = execute("adb pull /cache/"+imgFn+".img .")
+  resp, rc = executeLog("adb pull /cache/"+imgFn+".img .")
   resp, rc = executeLog("adb shell rm /cache/"+imgFn+".img")
 
   if os.path.isfile(imgFn+".img")==False:
@@ -351,8 +311,6 @@ def backupPartFunc():
 
   if partName[:4]=='boot':
     state.backupBoot = True
-    state.fixBootPart = False  # Newly backuped up boot.img needs to be packed
-      # and written out / flashed
     return True
   else: 
     return False
@@ -366,8 +324,7 @@ def fixPartFunc():
   partFid = "/dev/block/platform/sdhci.1/by-name/"+partName
   imgFn = 'rmc'+partName[:1].upper()+partName[1:]
 
-  if partName=='boot' and 'fixBootPart' in state  and state.fixBootPart \
-    and target!=fixPartFunc:
+  if partName=='boot' and state.fixBootPart and target!=fixPartFunc:
     print("  --skipping fixPart for boot partition, already done")
     return True  # For normal revive, if boot is fixed, skip it
     # If this is an explicit request to fixPart, do it
@@ -408,29 +365,22 @@ def fixPartFunc():
           print("      .."+ln)
           pp.append(ln)
       writeFile(imgFn+"Ramdisk/default.prop", '\n'.join(pp))
-      # /default.prop will be ignored by system/core/init/init.c if writable by
-      # group/other
-      resp, rc = executeLog("chmod go-w "+imgFn+"Ramdisk/default.prop")
       log("    fixed "+partName+" default.prop:\n"+'\n'.join(pp))
     except IOError as err:
       logp("  !! Can't find: "+fn+" in "+os.getcwd())
 
   logp("  -- repack ramdisk, repack "+imgFn+".img")
   resp, rc = executeLog("python "+installFilesDir+"/packBoot.py pack "+imgFn+".img")
-  logp(prefix("__|", '\n'.join(listDir(os.getcwd(), False, 'rmcBoot.img'))))
-  if os.path.isfile(imgFn+".img"):  # Make sure no .img file, we will rename
+  if os.path.isfile(imgFn+".img"):
     hndExcept()
-  
-
   # Rename the new file, rmcBoot.img20xxxxxxxxxx (20... is the date/time stamp)
   for fid in os.listdir('.'):
     if fid[:len(imgFn)+6] == imgFn+'.img20':
       os.rename(fid, imgFn+'.img')
       break
-  logp(prefix("..|", '\n'.join(listDir(os.getcwd(), False, 'rmcBoot.img'))))
 
   logp("  -- write new "+imgFn+".img to "+partName+" parition")
-  resp, rc = execute("adb push "+imgFn+".img /cache/"+imgFn+".img")
+  resp, rc = executeLog("adb push "+imgFn+".img /cache/"+imgFn+".img")
   resp, rc = executeLog("adb shell dd if=/cache/"+imgFn+".img of="+partFid
     +" ibs=4096")
   resp, rc = executeLog("adb shell rm /cache/"+imgFn+".img")
@@ -449,25 +399,15 @@ def installAppsFunc():
   logp("\n--installAppsFunc, uinstall dialer2, droidNode, droidNodeSystemSvc")
 
   # Uninstall apps
-  resp, rc = executeLog("adb shell rm /system/app/DroidNode.apk")
-  resp, rc = executeLog("adb shell rm /systemls/app/DroidNodeSystemSvcs.apk")
-  resp, rc = executeLog("adb uninstall ribo.audtest")
+  resp, rc = executeLog("adb rm /system/app/DroidNode.apk")
+  resp, rc = executeLog("adb rm /systemls/app/DroidNodeSystemSvcs.apk")
   resp, rc = executeLog("adb uninstall package:com.meraki.dialer2")
   # Perhaps run: ps |grep meraki and kill process?  perhaps reboot 
 
-  # Install programs
-  for id in installFiles:
-    print("  --install file/program: "+id)
-    instFl = installFiles[id]
-    resp, rc = executeLog("adb push "+installFilesDir+"/"+instFl[0] 
-      +" "+instFl[1]+'/'+instFl[0]) 
-    if len(instFl)>2:  # If there is a fixup cmd, do it (usually chmod)
-      resp, rc = executeLog("adb shell "+instFl[2]+" "+instFl[1]+'/'+instFl[0])
-
-  # Install/update new apps
+  # Install new apps
   for id in installApps:
     print("  --installing app: "+id)
-    resp, rc = executeLog("adb install -t -r "+installFilesDir+"/"+installApps[id])
+    resp, rc = executeLog("adb install -t "+installFilesDir+"/"+installApps[id])
   
   state.installApps = True
   return True
@@ -481,9 +421,6 @@ def checkFilesFunc():
 
   for id in neededFiles:
     succeeded &= chkFile(neededFiles[id]) # Verify files exist in installFiles dir
-
-  for id in installFiles:
-    succeeded &= chkFile(installFiles[id][0]) # (Programs/Files to be installed)
 
   for id in installApps:
     succeeded &= chkFile(installApps[id]) # (Apps are also in installFiles dir)
@@ -502,7 +439,7 @@ def adbModeFunc(targetMode="adb"):
   isFastboot = False
   isNormal = False  # Normal is: booted into normal dev operation, not recovery mode
 
-  resp, rc = executeLog("adb devices")
+  resp, rc = executeLog("adb devices", False)
 
   # Figure out what mode we are currently in
   currentMode = "unknown"
@@ -514,7 +451,7 @@ def adbModeFunc(targetMode="adb"):
     isNormal = True
     isAdb = True  # Normal mode (after fixing) should also adb enabled.
   else:
-    resp, rc = executeLog("fastboot devices")
+    resp, rc = executeLog("fastboot devices", False)
     ln = findLine(resp, "\tfastboot")
     if ln:
       currentMode = "fastboot"
@@ -596,28 +533,18 @@ def resetBFFFunc():
   logp("\n--resetBFFFunc")
   if os.path.isfile(filesPresentFid):
     os.remove(filePresentFid)
-    print("The filesPresent.flag file was removed, next time you run"
-      +" reviveMC74, it will recheck that you have all the needed files"
-      +" and programs.")
+  if os.path.isfile(bootFixedFid):
+    os.remove(bootFixedFid)
+    print("reviveMC74 no longer thinks the boot partition has been updated.")
+    print("  (Meaning that normal restart of MC74 is not expected to have a useful 'adb' server)")
   else:
-    print("(There was no 'filesPresent.flag file.)")
-
-
-def startPhoneFunc():
-  logp("\n--startPhoneFunc")
-  resp, rc = executeLog("adb am startservice ribo.ssm/.SSMservice");
-  resp, rc = executeLog("adb am start revive.MC74/org.linphone.dialer.DialerActivity");
-  try:
-    hndExcept()
-  except: hndExcept()
+    print("There was no 'boot partition has been fixed' state file")
 
 
 def manualFunc():
   logp("\n--manualFunc Enter commands on console...")
   aa = arg
-  try:
-    hndExcept()
-  except: hndExcept()
+  hndExcept()
 
 
 def listObjectivesFunc():

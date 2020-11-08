@@ -296,15 +296,6 @@ def rformat2(obj, maxDepth=1, indent=0):
   return ss
 
 
-def prefix(prefix, msg):
-  '''Take a string with multiple lines (ie '\n') and prefix or indent each
-  line to make the returned string more readable
-  '''
-  if len(msg)==0:  return msg
-  msg = msg[:-1] if msg[-1]=='\n' else msg
-  return prefix+('\n'+prefix).join(msg.split('\n'))
-
-
 def pr(obj, **args): 
   print(rformat(obj, **args))
 
@@ -346,18 +337,14 @@ def execute(cmd, showErr=True, returnStr=True):
   import subprocess
   if type(cmd)==str:
     cmd = cmd.split(' ')
-    # Remove ' ' tokens caused by multiple spaces in str             
-    cmd = [xx for xx in cmd if xx!='']
+  cmd = [xx for xx in cmd if xx!='']  # Remove ' ' tokens caused by multiple space in str
   proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   out, err = proc.communicate()
-  if type(out)==bytes:  # Needed for python 3 (stupid python)
-    out = out.decode()
-    err = err.decode()
-  
   if showErr and len(err)>0:
-    out += err
-  if returnStr and str(type(out))=="<type 'unicode'>":
-    # Trying to make 'out' be an ASCII string whether in py2 or py3, sigh.
+    err = err.decode("utf8")
+    print("executeErr: %s" % (err))
+  if returnStr:
+    #out = out.decode("utf-8")
     out = out.encode()  # Convert UNICODE (u'xxx') to string
   return out, proc.returncode
 
