@@ -1,0 +1,556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
+    
+    
+      
+        <title>Setup - ReviveMC74 Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#8bc34b">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="light-green" data-md-color-accent="light-green">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inital-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="ReviveMC74 Docs" class="md-header-nav__button md-logo" aria-label="ReviveMC74 Docs">
+      
+  <img src="../img/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            ReviveMC74 Docs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ReviveMC74 Docs" class="md-nav__button md-logo" aria-label="ReviveMC74 Docs">
+      
+  <img src="../img/icon.png" alt="logo">
+
+    </a>
+    ReviveMC74 Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Setup
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-do-you-need" class="md-nav__link">
+    What do you need?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-the-phone" class="md-nav__link">
+    Preparing the phone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-1-running-the-script" class="md-nav__link">
+    Option 1: Running the script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-2-replacerecovery-failure" class="md-nav__link">
+    Option 2: replaceRecovery Failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-3-installapps-failure" class="md-nav__link">
+    Option 3: installApps Failure
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extras/" class="md-nav__link">
+        Extras
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-do-you-need" class="md-nav__link">
+    What do you need?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-the-phone" class="md-nav__link">
+    Preparing the phone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-1-running-the-script" class="md-nav__link">
+    Option 1: Running the script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-2-replacerecovery-failure" class="md-nav__link">
+    Option 2: replaceRecovery Failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-3-installapps-failure" class="md-nav__link">
+    Option 3: installApps Failure
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="inital-setup">Inital Setup:</h1>
+<p>Well, we have to start somewhere right? Let's start with the basics</p>
+<h4 id="what-do-you-need">What do you need?</h4>
+<ul>
+<li>A copy of the repository in a local directory:
+<br/><code>git clone https://github.com/reviveMC74/reviveMC74.git</code>
+<br/><code>cd reviveMC74</code></li>
+<li>A USB-A &lt;-&gt; USB-A cable <a href="https://www.amazon.com/s?k=USB+A+to+USB+A&amp;ref=nb_sb_noss_2">(Amazon)</a></li>
+<li>A Meraki MC74 Cloud Phone (A-duh, that's why you're here)</li>
+<li>A way to power the phone, either via PoE (Power over Ethernet) or 12v adapter</li>
+<li>A computer with Python3 installed, preferibly Python27 for compatability reasons<blockquote>
+<p>I Personally recommend installing Debian in a VM and passing the ADB interface through to it. I've found it easier to get the dependancies listed in the installer this way. The directions to get a VM with Debian running are outside the scope of this guide, but you can google it.</p>
+</blockquote>
+</li>
+<li>The dependancies listed in the installer:<ul>
+<li><a href="https://github.com/huaixzk/android_win_tool">UNPACKBOOTIMG/MKBOOTIMG/CPIO/CHMOD</a></li>
+<li><a href="https://sourceforge.net/projects/unxutils/files/unxutils/current/UnxUtils.zip/download">GZIP/GUNZIP</a><blockquote>
+<p>Extract <code>usr/local/wbin/gunzip.exe</code> and <code>usr/local/wbin/gzip.exe</code> from that download and place in a PATH directory.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>A reasonable amount of experience with <a href="https://developer.android.com/studio/command-line/adb">ADB</a> (Android Debug Bridge)</li>
+</ul>
+<h4 id="preparing-the-phone">Preparing the phone</h4>
+<p>After you've gathered the required components / software, you need to perform the following to get started:</p>
+<blockquote>
+<p><em>These steps put the phone into fastboot, allowing you to flash a custom recovery.</em></p>
+</blockquote>
+<ol>
+<li>Remove the USB cable from the side of the MC74 (If you've already connected it previously.)</li>
+<li>Remove the ethernet/PoE cable from the LAN port on the back of the MC74</li>
+<li>Reconnect the USB cable to the right-side USB port of the MC74 (Not the back) and the other end to your PC<blockquote>
+<p>Before you move onto the next step, be prepared to do the following after continuing:</p>
+</blockquote>
+<ol>
+<li>Press and hold the mute button (before the backlight flashes)</li>
+<li>Keep pressing it until the Cisco / Meraki logo appears and the vibrator audibly sounds</li>
+</ol>
+</li>
+<li>Apply power with your PoE ethernet cable to the LAN port (It looks like a LAN icon, not the PC icon port.)</li>
+<li>Release the mute button after step 3-B occurs.<blockquote>
+<p>If the phone boots like normal, you've done something wrong and must try again. Please return to step 1.</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="option-1-running-the-script">Option 1: Running the script</h4>
+<p>Now that the phone is ready, we can finally run the script!
+<br>BUT, hold your horses, we have a few ways of doing it depending on how you installed Python:</p>
+<p>From inside the <code>reviveMC74-main</code> directory, type:
+<br>- <code>C:\python27\python.exe revive-Mc74.py</code>
+<br>- Or <code>python revive-Mc74.py</code>
+<br> It should run as desired, and give a few more prompts. Just follow them as directed. 
+<br>When finished, you should have a modded MC74!
+<br>Open the app drawer and tap <code>wPhone</code> and configure as desired.</p>
+<blockquote>
+<p>Don't worry if something breaks when running the script, not everyone's phone is built the same, so the script may fail in some places and succeed in others. The following options are for you!</p>
+</blockquote>
+<h4 id="option-2-replacerecovery-failure">Option 2: replaceRecovery Failure</h4>
+<p>Let's say the script failed after flashing recovery and now your phone is just sitting there in CWM, there's a way to manually do the rest of the work.</p>
+<p>My first phone failed here, and I had to do a bunch of tinkering to the <code>/system</code> partition to get it to allow access to ADB. Let's skip that and flash a pre-built image instead that I built from my phone:</p>
+<ol>
+<li>Download the <a href="https://mega.nz/file/sYgnXATK#JszO_wV1flV9aX145y60SIpWhyvpk6lezr3BFoyHgCg">following</a> <code>.zip</code> file which is a backup of my <code>/system</code> partition, preconfigured to allow ADB access upon boot, and already has the Meraki dialer pre-uninstalled.</li>
+<li>From CWM, press <code>install zip from sideload</code></li>
+<li>In your ADB shell type <code>adb sideload {directory/to/downloaded/zip}</code></li>
+<li>After it pushes and restores, wipe <code>/data</code> and <code>/cache</code> to prevent potential issues.</li>
+<li>Reboot to system.</li>
+<li>When it boots, it may look like it's "bootlooping" but it should be operational, ensure the device has vibrated as that is an indicator of a successful boot.</li>
+<li>Then, run the script with the following arguments: <code>python revive-Mc74.py installApps</code></li>
+<li>That should install (and uninstall if I missed anything) the custom dialer, led controls, and button redirections.</li>
+<li>From there, just press and hold the mute button and it should prompt you to pick a home application, choose TeslaLauncher and be sure to hit <code>Always</code>.</li>
+<li>And finally, from the app drawer run <code>wPhone</code> to get started on setting up your SIP softphone.</li>
+</ol>
+<blockquote>
+<p>Again, don't worry if that doesn't work either, there's always an option 3.</p>
+</blockquote>
+<h4 id="option-3-installapps-failure">Option 3: installApps Failure</h4>
+<p>So, you've got CWM flashed to recovery, you've flashed my custom <code>/system</code> backup, or you've managed to get through the script up until this point, and now you're stuck:</p>
+<p>This is how my second phone failed, and here's how I manually did the work:</p>
+<ol>
+<li>Ensure you have ADB access to the phone (It's booted, and sitting on the Cisco Meraki screen, or you're on the homescreen.)</li>
+<li>from the <code>/installFiles</code> subdirectory, run the following:<ol>
+<li><code>adb install com.teslacoilsw.launcher-4.1.0-41000-minAPI16.apk</code></li>
+<li><code>adb install -r -t revive.MC74-debug.apk</code></li>
+<li><code>adb install revive.SSMService-debug.apk</code></li>
+<li><code>adb root</code></li>
+<li><code>adb remount</code></li>
+<li><code>adb copy hex /system/bin/hex</code></li>
+<li><code>adb chmod 755 /system/bin/hex</code></li>
+<li><code>adb copy lights /system/bin/lights</code></li>
+<li><code>adb chmod 755 /system/bin/hex</code></li>
+</ol>
+</li>
+</ol>
+<p>From there, you should be able to reboot the phone, and then run an application called <code>wPhone</code> from the launcher drawer. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../config/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Configuration
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.53cc9318.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.instant', 'navigation.sections', 'navigation.expand'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
