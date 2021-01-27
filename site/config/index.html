@@ -356,7 +356,8 @@
 <h4 id="configuring-wphone-to-communicate-with-a-3cx-sip-server">Configuring wPhone to communicate with a 3CX SIP server:</h4>
 <p>Now, I understand that <em>not everyone uses 3CX</em> but I prefer it over most other SIP / PBX servers as it's easy to configure and the license is pretty much free to use.</p>
 <ol>
-<li>Open the <code>wPhone</code> application. It should present you with an assisted menu to put your credentials into.<blockquote>
+<li>Open the <code>wPhone</code> application. It should present you with an assisted menu to put your credentials into.
+<img alt="linphone-assistant-image" src="../img/screenshots/assistant-linphone.png" /><blockquote>
 <p>Your credentials are translated as presented below:</p>
 </blockquote>
 <ul>
@@ -367,18 +368,23 @@
 <li><code>Transport: TCP (Or TLS if you have that configured.)</code></li>
 </ul>
 </li>
-<li>Now, it won't work out of the box, because 3CX is special, so hit the hamburger button in the upper-left corner and tap your display name. It should open a menu titled <code>SIP ACCOUNT</code>.</li>
-<li>On the right, under <code>Auth userid</code> put your extension username.</li>
+<li>Now, it won't work out of the box, because 3CX is special, so hit the hamburger button in the upper-left corner and tap your display name. It should open a menu titled <code>SIP ACCOUNT</code>.
+<img alt="linphone-sipaccount-image" src="../img/screenshots/sidebar-linphone.png" /></li>
+<li>On the right, under <code>Auth userid</code> put your extension username.
+<img alt="linphone-sipaccount2-image" src="../img/screenshots/sipaccount-linphone.png" /></li>
 <li>Under <code>Proxy</code> add your SIP port after your domain so it looks something like:
-<br><code>&lt;sip:{domain}:{port};transport=tcp&gt;</code></li>
-<li>Under <code>Prefix</code> remove the prefix, otherwise it'll try to dial with a +1 on everything.</li>
+<img alt="linphone-proxy-image" src="../img/screenshots/sipaccount-proxy-linphone.png" /></li>
+<li>Under <code>Prefix</code> remove the prefix, otherwise it'll try to dial with a +1 on everything.
+<img alt="linphone-prefix-image" src="../img/screenshots/sipaccount-prefix-linphone.png" /></li>
 <li>Switch to the <code>Network</code> tab.</li>
 <li>Switch <code>Use Random Ports</code> to <code>OFF</code>.</li>
-<li>Under <code>SIP Port</code> put <code>9000</code>.</li>
+<li>Under <code>SIP Port</code> put <code>9000</code>.
+<img alt="linphone-network-image" src="../img/screenshots/network-linphone.png" /></li>
 <li>Switch to the <code>Call</code> tab.</li>
 <li>Configure a ringtone, or don't. I don't care.</li>
 <li>Switch to the <code>Audio</code> tab.</li>
-<li>Go ham, turn on all the codecs.</li>
+<li>Go ham, turn on all the codecs.
+<img alt="linphone-audio-image" src="../img/screenshots/audio-linphone.png" /></li>
 <li>In 3CX, under the extension, and under <code>Phone Provisioning</code> scroll to the bottom and look under codecs.</li>
 <li>Click <code>Add codecs</code> and add them all.</li>
 <li>On the phone again, press the dialpad button and tap the status indicator next to the hamburger icon, this instructs it to attempt to connect.</li>
