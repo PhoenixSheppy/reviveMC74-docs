@@ -3,6 +3,7 @@ nav:
     - Home: index.md
     - Setup: setup.md
     - Configuration: config.md
+    - Customization: customization.md
     - Extras: extras.md
     - Contact: contact.md
 theme:
