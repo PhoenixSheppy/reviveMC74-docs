@@ -6,9 +6,7 @@ After doing all of that work, I'm sure you're dying to know if you can set custo
 After completing intial configuration, (i.e. Connecting to a SIP/PBX server, ensuring phonecalls can be recieved and made, etc.) you can further customize and brand your phone in the following ways:
 
 - You can change the ringtone to be any `.ogg` file, just use an online converter to convert it!
-- You can change the background on the dialer, as well as the clock to be whatever you want, just ensure your photo is in `16:9` aspect ratio.
-- You can change the sidebar shortcuts to be whatever you want; check MSN, check your favorite stock, a Grafana board, you name it.
-- You can also change the incoming call behavior manually, enforcing vibration when an incoming call is recieved, or etc.
+- You can change the background on the dialer, as well as the clock to be whatever you want.
 
 #### Changing the ringtone
 
@@ -29,4 +27,13 @@ To change the ringtone, perform the following steps;
 To change the wallpaper behind the dialer, perform the following steps;
 
 1. **Ensure** your wallpaper is in `16:9` and at least 720p (1280x720).
-2. Establish an ADB connection to your phone, note that the location we will be using to store your wallpaper will be `/sdcard/--STOP
+2. Establish an ADB connection to your phone, note that the location we will be using to store your wallpaper will be `/sdcard/ssm/image/`
+3. Copy your desired wallpaper from your PC to your phone using the following command: <br>`adb shell push /path/to/wallpaper.png /sdcard/ssm/image/wallpaper.png`
+4. Pull the configuration file from the phone using the following command: <br>`adb shell pull /sdcard/ssm/store/MC74.mp`
+5. Open up your text editor of choice, and locate the line that says <br>`bg: 'whiteSlate.jpg'` Change that to `bg: 'wallpaper.png'`
+>Note: To also change the wallpaper on the clock, find `img: "row.jpg"` under `screensaver:` and change it out with `img: "wallpaper.png"`
+6. Push the configuration file from your PC to your phone using the following command: <br>`adb shell push /MC74.mp /sdcard/ssm/store/MC74.mp`
+7. Reboot your phone, *or* force-close and reopen wPhone from your home menu. Your changes should now be applied.
+
+![Photo of Custom Wallpaper](img/screenshots/customization-linphone.png)
+
