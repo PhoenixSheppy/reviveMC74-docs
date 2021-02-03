@@ -1,4 +1,6 @@
-site_name: ReviveMC74 Docs
+site_name: ReviveMC74
+site_url: https://revivemc74.com
+repo_url: https://github.com/reviveMC74/reviveMC74
 nav:
     - Home: index.md
     - Setup: setup.md
@@ -6,8 +8,10 @@ nav:
     - Customization: customization.md
     - Extras: extras.md
     - Contact: contact.md
+    - Reddit: https://reddit.com/r/ReviveMC74
 theme:
   name: material
+  custom_dir: overrides
   logo: img/icon.png
   favicon: img/favicon.ico
   features:
@@ -18,3 +22,4 @@ theme:
     scheme: slate
     primary: light green
     accent: light green
+  
