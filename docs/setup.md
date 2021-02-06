@@ -71,13 +71,13 @@ This is how my second phone failed, and here's how I manually did the work:
 1. Ensure you have ADB access to the phone (It's booted, and sitting on the Cisco Meraki screen, or you're on the homescreen.)
 2. from the `/installFiles` subdirectory, run the following:
     1. `adb install com.teslacoilsw.launcher-4.1.0-41000-minAPI16.apk`
-    2. `adb install -r -t revive.MC74-debug.apk`
+    2. `adb install -t revive.MC74-debug.apk`
     3. `adb install revive.SSMService-debug.apk`
     4. `adb root`
     5. `adb remount`
-    6. `adb copy hex /system/bin/hex`
-    7. `adb chmod 755 /system/bin/hex`
-    8. `adb copy lights /system/bin/lights`
-    9. `adb chmod 755 /system/bin/hex`
+    6. `adb push hex /system/bin/hex`
+    7. `adb shell chmod 755 /system/bin/hex`
+    8. `adb push lights /system/bin/lights`
+    9. `adb shell chmod 755 /system/bin/hex`
 
 From there, you should be able to reboot the phone, and then run an application called `wPhone` from the launcher drawer. 

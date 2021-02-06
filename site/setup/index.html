@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://revivemc74.com/setup/">
       
       <link rel="shortcut icon" href="../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -541,14 +541,14 @@
 <li>Ensure you have ADB access to the phone (It's booted, and sitting on the Cisco Meraki screen, or you're on the homescreen.)</li>
 <li>from the <code>/installFiles</code> subdirectory, run the following:<ol>
 <li><code>adb install com.teslacoilsw.launcher-4.1.0-41000-minAPI16.apk</code></li>
-<li><code>adb install -r -t revive.MC74-debug.apk</code></li>
+<li><code>adb install -t revive.MC74-debug.apk</code></li>
 <li><code>adb install revive.SSMService-debug.apk</code></li>
 <li><code>adb root</code></li>
 <li><code>adb remount</code></li>
-<li><code>adb copy hex /system/bin/hex</code></li>
-<li><code>adb chmod 755 /system/bin/hex</code></li>
-<li><code>adb copy lights /system/bin/lights</code></li>
-<li><code>adb chmod 755 /system/bin/hex</code></li>
+<li><code>adb push hex /system/bin/hex</code></li>
+<li><code>adb shell chmod 755 /system/bin/hex</code></li>
+<li><code>adb push lights /system/bin/lights</code></li>
+<li><code>adb shell chmod 755 /system/bin/hex</code></li>
 </ol>
 </li>
 </ol>
@@ -619,8 +619,8 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.53cc9318.min.js"></script>
-      <script src="../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
