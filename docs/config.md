@@ -25,18 +25,14 @@ Now, I understand that *not everyone uses 3CX* but I prefer it over most other S
 ![linphone-proxy-image](img/screenshots/sipaccount-proxy-linphone.png)
 5. Under `Prefix` remove the prefix, otherwise it'll try to dial with a +1 on everything.
 ![linphone-prefix-image](img/screenshots/sipaccount-prefix-linphone.png)
-6. Switch to the `Network` tab.
-7. Switch `Use Random Ports` to `OFF`.
-8. Under `SIP Port` put `9000`.
-![linphone-network-image](img/screenshots/network-linphone.png)
-9. Switch to the `Call` tab.
-10. Configure a ringtone, or don't. I don't care.
-11. Switch to the `Audio` tab.
-12. Go ham, turn on all the codecs.
+6. Switch to the `Call` tab.
+7. Configure a ringtone, or don't. I don't care.
+8. Switch to the `Audio` tab.
+9. Go ham, turn on all the codecs.
 ![linphone-audio-image](img/screenshots/audio-linphone.png)
-13. In 3CX, under the extension, and under `Phone Provisioning` scroll to the bottom and look under codecs.
-14. Click `Add codecs` and add them all.
-15. On the phone again, press the dialpad button and tap the status indicator next to the hamburger icon, this instructs it to attempt to connect.
+10. In 3CX, under the extension, and under `Phone Provisioning` scroll to the bottom and look under codecs.
+11. Click `Add codecs` and add them all.
+12. On the phone again, press the dialpad button and tap the status indicator next to the hamburger icon, this instructs it to attempt to connect.
 
 It should connect if your setup matches mine. Congratulations!
 

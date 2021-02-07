@@ -1,4 +1,4 @@
-# Inital Setup:
+# Inital Setup
 Well, we have to start somewhere right? Let's start with the basics
 
 #### What do you need?

@@ -20,7 +20,7 @@ To change the ringtone, perform the following steps;
 4. Pull the configuration file from the phone using the following command: <br>`adb shell pull /sdcard/ssm/store/MC74.mp C:/path/to/desired/location/MC74.mp`.
 > Now's a great time to remove the old `MC74.nob` if you've previously modified your phone and you're updating / now customizing. <br>Run: `adb shell rm /sdcard/ssm/store/MC74.nob`
 5. Open up your text editor of choice, and locate the line that says <br>`ringtone: '/system/media/audio/ringtones/Trad.ogg'` and change it to <br>`ringtone: '/sdcard/ssm/audio/yourringtone.ogg'`
-6. Now push it back to the phone: `adb shell push C:/path/to/desired/location/MC74.mp /sdcard/ssm/store/MC74.nob`.
+6. Now push it back to the phone: `adb shell push C:/path/to/desired/location/MC74.mp /sdcard/ssm/store/MC74.mp`.
 7. Reboot your phone, *or* force-close and reopen wPhone from your home menu. Your changes should now be applied.
 
 #### Changing the wallpaper

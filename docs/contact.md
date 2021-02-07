@@ -17,7 +17,7 @@ I also started the community on [Reddit](https://reddit.com/r/ReviveMC74), which
 
 I love the project, as it provides an outlet for me to learn new things. It's taught me deep ADB commands, Python, Markdown, how to manage a subreddit, and much more.
 
-I (Phoenix, Jacob W.) personally took the time to QA / test, break, experiment and write this, and the other guides on the subreddit. 
+I personally took the time to QA / test, break, experiment and write this, and the other guides on the subreddit.
 
 I'm from Saint Louis, Missouri. And I'm currently on the tail-end of my Associates degree in Computer Systems Administration. I have a CCENT, MD-100, and I'm working towards my CCNA.
 

@@ -3,6 +3,7 @@ site_url: https://revivemc74.com
 repo_url: https://github.com/reviveMC74/reviveMC74
 nav:
     - Home: index.md
+    - Background Info: background.md
     - Setup: setup.md
     - Configuration: config.md
     - Customization: customization.md
