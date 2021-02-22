@@ -74,6 +74,7 @@ This is how my second phone failed, and here's how I manually did the work:
     2. `adb install -t revive.MC74-debug.apk`
     3. `adb install revive.SSMService-debug.apk`
     4. `adb root`
+    > This may result in a "hang" and do absolutely nothing. Don't worry, if this happens, press `ctrl-c` and then unplug the USB cable from the phone, and plug it back in. Then proceed as normal.
     5. `adb remount`
     6. `adb push hex /system/bin/hex`
     7. `adb shell chmod 755 /system/bin/hex`

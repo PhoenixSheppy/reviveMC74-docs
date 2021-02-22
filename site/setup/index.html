@@ -558,7 +558,10 @@
 <li><code>adb install com.teslacoilsw.launcher-4.1.0-41000-minAPI16.apk</code></li>
 <li><code>adb install -t revive.MC74-debug.apk</code></li>
 <li><code>adb install revive.SSMService-debug.apk</code></li>
-<li><code>adb root</code></li>
+<li><code>adb root</code><blockquote>
+<p>This may result in a "hang" and do absolutely nothing. Don't worry, if this happens, press <code>ctrl-c</code> and then unplug the USB cable from the phone, and plug it back in. Then proceed as normal.</p>
+</blockquote>
+</li>
 <li><code>adb remount</code></li>
 <li><code>adb push hex /system/bin/hex</code></li>
 <li><code>adb shell chmod 755 /system/bin/hex</code></li>
