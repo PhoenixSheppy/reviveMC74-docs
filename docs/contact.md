@@ -17,6 +17,6 @@ I love the project, as it provides an outlet for me to learn new things. It's ta
 
 I personally took the time to QA / test, break, experiment and write this, and the other guides on the subreddit.
 
-My name's Jacob, and I'm from Saint Louis, Missouri. I'm currently on the tail-end of my Associates degree in Computer Systems Administration. I have a CCENT, MD-100, and I'm working towards my CCNA before I graduate.
+My name's Jacob, and I'm from Saint Louis, Missouri. I'm a graduate from Ranken Technical College with a degree in Networking Systems Management, and I'm currently working as a Desktop Specialist.
 
-You can visit my [blog](https://phoenixnet.tech) to learn more about my personal ventures, as this is really only one small piece of the puzzle in a larger sense.
+You can visit my [blog](https://portfolio.phoenixnet.tech) to learn more about my personal ventures, as this is really only one small piece of my larger puzzle.
